@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>贪吃蛇</title>
+</head>
+<body>
+<script type="text/javascript">
+    //创建地图
+    function Map(){
+        this.width = 600;
+        this.height = 400;
+        this.backgroundColor = 'gray';
+        this.ditu = null;
+        //显示地图
+        //this.show = function(){
+        //
+        //}
+    }
+    Map.prototype.show = function(){
+        //创建div
+        var div = document.createElement('div');
+        //位置样式
+        div.style.width = this.width + 'px';
+        div.style.height = this.height + 'px';
+        div.style.backgroundColor = this.backgroundColor;
+        //显示到页面中
+        document.body.appendChild(div);
+        //将地图的div保存到地图对象的属性上，后续会使用
+        this.ditu = div;
+    }
+    var map = new Map();
+    map.show();
+    //创建食物
+    function Food(map){
+        this.width = 20;
+        this.height = 20;
+        this.backgroundColor = 'green';
+        this.x = 0;
+        this.y = 0;
+        this.position = 'absolute';
+        this.shiwu = null;
+        if(!Food.prototype.show){
+            Food.prototype.show = function(){
+                //加上判断，一个方法，兼具显示和刷新功能
+                if(!this.shiwu){
+                    //创建div
+                    var div = document.createElement('div');
+                    //位置样式
+                    div.style.width = this.width + 'px';
+                    div.style.height = this.height + 'px';
+                    div.style.backgroundColor = this.backgroundColor;
+                    div.style.position = 'absolute';
+                    //显示到页面中
+                    map.ditu.appendChild(div);
+                    this.shiwu = div;
+                }
+
+                //位置 生成随机的 x y 坐标
+                this.x = Math.floor(Math.random() * (map.width/this.width));
+                this.y = Math.floor(Math.random() * (map.height/this.height));
+                //设置位置相关样式
+                this.shiwu.style.left = this.x * this.width + 'px';
+                this.shiwu.style.top = this.y * this.height + 'px';
+
+
+            }
+        }
+    }
+    var food = new Food(map);
+    food.show();
+    //food.show();
+
+    //创建蛇
+    function Snake(){
+        this.body=[[5,3,'red',null],[4,3,'blue',null],[3,3,'blue',null]];
+        this.width = 20;
+        this.height = 20;
+        this.position = 'absolute';
+        this.direction = 'right';
+        this.canChange = false;
+        if(!Snake.prototype.show){
+            Snake.prototype.show = function(){
+                //创建每节身体的 div
+                for (var i=0; i<this.body.length; i++){
+                    if(!this.body[i][3]){
+                        //以前没有创建过对应的div
+                        var div = document.createElement('div');
+                        //设置样式
+                        div.style.width = this.width + 'px';
+                        div.style.height = this.height + 'px';
+                        div.style.position = this.position;
+                        //显示到地图中
+                        map.ditu.appendChild(div);
+                        this.body[i][3] = div;
+                    }
+                    this.body[i][3].style.backgroundColor = this.body[i][2];
+                    this.body[i][3].style.left = this.body[i][0] * this.width + 'px';
+                    this.body[i][3].style.top = this.body[i][1] * this.height + 'px';
+                }
+                this.canChange = true;
+            }
+            //让蛇移动，每一节身体坐标变成前一节坐标
+            //从蛇尾开始移动，蛇头单独控制方向
+            Snake.prototype.move = function(){
+                //循环修改每节身体坐标
+                for(var i = this.body.length-1;i>0;i--){
+                    this.body[i][0] = this.body[i-1][0];
+                    this.body[i][1] = this.body[i-1][1];
+                }
+               switch(this.direction){
+                   case "right":this.body[0][0] += 1;break;
+                   case "left":this.body[0][0] -= 1;break;
+                   case "down":this.body[0][1] += 1;break;
+                   case "up":this.body[0][1] -= 1;break;
+               }
+                //判断边界条件
+                if(this.body[0][0] < 0 || this.body[0][0] > 29 ||
+                this.body[0][1] < 0 || this.body[0][1] > 19 ){
+                    //游戏结束  停止计时器
+                    clearInterval(timer);
+                    alert("game over");
+                    return;
+                }
+                //判断蛇头是否和其他的身体坐标重合
+                for (i = 1 ; i < this.body.length ; i++){
+                    if(this.body[0][0] == this.body[i][0] &&
+                        this.body[0][1] == this.body[i][1]){
+                        //游戏结束  停止计时器
+                        clearInterval(timer);
+                        alert("game over");
+                        return;
+                    }
+                }
+                this.show();
+                //判断是否吃到实物，
+                if(this.body[0][0] == food.x && this.body[0][1] == food.y){
+                    //吃到食物,加长一节
+                    this.body.push([0,0,'blue',null]);
+
+                    //食物位置刷新
+                    food.show();
+                    //让蛇加速
+                    if(t > 150){t-=50;setTimer();}
+                }
+            }
+        }
+
+    }
+    var snake = new Snake();
+    snake.show();
+    //让蛇自动走
+    var t = 500;
+    var timer;
+    function setTimer(){
+        //先停止之前的定时器
+        clearInterval(timer);
+        //重新设置定时器
+        var timer = setInterval(function(){
+            snake.move();
+        },t);
+    }
+    setTimer();
+    //让蛇拐弯
+    //绑定键盘事件
+    window.onkeyup = function(e){
+        var ev = e || window.event;
+        if(!snake.canChange){
+            //不能改变方向
+            return;
+        }
+        console.log(ev);
+        switch (ev.keyCode){
+            case 37:if(snake.direction != "right")snake.direction="left";break;
+            case 38:if(snake.direction != "down")snake.direction="up";break;
+            case 39:if(snake.direction != "left")snake.direction="right";break;
+            case 40:if(snake.direction != "up")snake.direction="down";break;
+        }
+        snake.canChange = false;
+    }
+</script>
+</body>
+</html>

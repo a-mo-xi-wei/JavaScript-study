@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例</title>
+</head>
+<body>
+<div>
+    <input type="button" value="显示" onclick="xianshi()">
+    <input type="button" value="隐藏" onclick="yincang()">
+    <br>
+    <img src="img/三玖天下第一.jpg" id="img" class="img">
+</div>
+<hr>
+<div>
+    <p>班长</p>
+    <p>组长</p>
+    <p>组员</p>
+    <input type="button" value="变色" onclick="bianse()">
+</div>
+    <script type="text/javascript">
+        function yincang(){
+            var img = document.getElementById('img');
+            img.style.display = "none";
+        }
+        function xianshi(){
+            var img = document.getElementById('img');
+            img.style.display = "block";
+        }
+        function bianse(){
+            //获取所有p标签
+            var p = document.getElementsByTagName('p');
+            // p 是多个标签的一个类数组对象，不能直接通过style设置样式
+            //遍历数组，取到每一个标签，单独设置样式
+            for(var i = 0 ; i < p.length ; i++){
+                p[i].style.backgroundColor = "red";
+            }
+
+        }
+    </script>
+</body>
+</html>

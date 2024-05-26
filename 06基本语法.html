@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>基本语法</title>
+</head>
+<body>
+<h1 style="color:#0ff">语法基本雷同C/C++</h1>
+<script type="text/javascript">
+
+    document.write('<table border="1">');
+    for(var i=1;i<=9;++i){
+        document.write('<tr>')
+        for(var j =1;j<=i;++j){
+            document.write('<td>');
+            document.write(j + "*" +
+                i + "=" + j*i + ' ');
+            document.write('</td>');
+        }
+        document.write('</tr>')
+    }
+    document.write('</table>');
+</script>
+
+</body>
+</html>

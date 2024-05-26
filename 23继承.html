@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>继承</title>
+</head>
+<body>
+<script type="text/javascript">
+    /*	// A 构造函数
+        function A(){
+            this.age = 30;
+        }
+        A.prototype.say = function(){
+            console.log('hello');
+        }
+
+        var obj_a = new A();
+
+        console.log(obj_a.age);
+        obj_a.say(); //hello
+        //obj_a  继承了  原型对象 A.prototype ,能够直接使用原型对象的方法
+    */
+
+    //让B的实例对象 继承 A的实例对象
+    //基本语法： B.prototype = new A();
+    // A 父类构造函数
+    /*function A(){
+        this.age = 30;
+    }
+    A.prototype.say = function(){
+        console.log('hello');
+    }
+
+    var obj_a = new A();
+
+    // B是子类构造函数
+    function B(){
+        this.sex = "男";
+    }
+    B.prototype = obj_a;  // B.prototype = new A();
+    B.prototype.zou = function(){
+        console.log('走路');
+    }
+
+    //实例化子类构造函数B,得到一个子对象
+    var obj_b = new B();
+    //B的实例对象，可以使用A实例对象的成员
+    console.log( obj_b.age );
+    obj_b.say();
+    obj_b.zou();*/
+
+    // 使用场景  人  都会说话 走路  有的人会打球 有的人会唱歌
+    // 多个子类构造函数  继承 同一个父类构造函数
+    //父类构造函数
+    function Person(){
+
+    }
+    Person.prototype.say = function(){
+        console.log('所有人都会说话');
+    }
+    Person.prototype.walk = function(){
+        console.log('所有人都会走路');
+    }
+
+    //子类构造函数  歌手
+    function Ren(){
+
+    }
+    Ren.prototype = new Person();
+    Ren.prototype.changge = function(){
+        console.log('唱歌');
+    }
+    var obj = new Ren();
+    obj.say();
+    obj.walk();
+    obj.changge();
+
+    //子类构造函数  球员
+    function Ball(){
+
+    }
+    Ball.prototype = new Person();
+    Ball.prototype.play = function(){
+        console.log('打球')
+    }
+
+    var obj2 = new Ball();
+    obj2.say();
+    obj2.walk();
+    obj2.play();
+</script>
+</body>
+</html>

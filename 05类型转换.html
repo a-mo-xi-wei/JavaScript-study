@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类型转换</title>
+</head>
+<body>
+<h1 style="color:#0ff">类型转换</h1>
+<script type="text/javascript">
+  //字符串类型转换
+  var num = 100;
+  console.log(num.toString());
+  console.log(String(num));//存在的意义是有些值（如特殊值）并没有toString()方法
+  console.log(num);
+  //数值类型转换
+  //var a = 1;
+  //var b = 10;
+  //var c = 'abc';
+  //var d = true;
+  //var e = undefined;
+  //var f = null;
+  //console.log(Number(a));
+  //console.log(Number(b));
+  //console.log(Number(c));
+  //console.log(Number(d));
+  //console.log(Number(e));
+  //console.log(Number(f));
+
+  /*NaN 是一个数值类型，不是一个具体的数字，它和任何值都不相等，包括本身*/
+  console.log(NaN == NaN);
+  console.log(NaN === NaN);
+  console.log(NaN == 1);
+  var val = NaN;
+  console.log(isNaN(val));
+
+  //向下取整  parseInt()      转换为小数则为 parseFloat()
+  console.log(parseInt(100.5));
+  console.log(parseInt(100.9));
+  console.log(parseInt(100.1));
+  console.log(parseInt('100.3'));
+  console.log(parseInt('abcd'));
+  console.log(parseInt('100'));
+
+  //自动将字符串转为数字
+  var q = '100';
+  console.log(q-10);
+
+  //转换为bool类型
+  var a = 1;
+  var b = 10;
+  var c = 'abc';
+  var d = true;
+  var e = undefined;
+  var f = null;
+  console.log(Boolean(a));
+  console.log(Boolean(b));
+  console.log(Boolean(c));
+  console.log(Boolean(d));
+  console.log(Boolean(e));
+  console.log(Boolean(f));
+
+</script>
+</body>
+</html>

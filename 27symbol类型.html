@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>symbol</title>
+</head>
+<body>
+<script type="text/javascript">
+    var symbol1 = Symbol();
+    var symbol2 = Symbol("Alice");
+    console.log(symbol1,symbol2);
+    console.log(symbol1 == symbol2);
+    console.log(Symbol() == Symbol());
+
+    //作用 ， 独一无二 对象中成员变量取名 防止重复
+    //var say = 'abc';
+    var obj = {
+        "age" : 40,
+        "sex" : "男",
+        //[say] : "100"
+        [Symbol()] : "100"
+    };
+    obj[Symbol()] = 200;
+    console.log(obj);
+
+
+
+</script>
+</body>
+</html>

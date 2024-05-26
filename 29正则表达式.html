@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+</head>
+<body>
+<script type="text/javascript">
+    //正则表达式 是一种用来操作字符串（查找、替换、匹配） 公式，描述字符串的格式
+    var str = 'php';
+    var result = str.match(/p/);    //只匹配一次
+    //var result = str.match(/a/);  null
+    console.log(result);
+    result = str.match(/p/g);    //global 进行全局匹配，匹配所有
+    console.log(result);
+    str = "phpphp";
+    result = str.match(/p+/g);  // + 表示匹配一个或多个
+    console.log(result);
+    str =  "php1!js_26";
+    result = str.match(/\d+/g);//匹配所有数字
+    console.log(result);
+    result = str.match(/\w+/g);//匹配所有字母数字下划线
+    console.log(result);
+    //内容太多。。。。。
+</script>
+</body>
+</html>

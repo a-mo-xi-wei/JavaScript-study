@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>类和对象</title>
+</head>
+<body>
+<script type="text/javascript">
+    class A {
+        //构造函数
+        constructor() {
+            this.age = 100;
+        }
+
+        Say() {
+            console.log("我是你爹");
+            console.log("我是Say实例化方法");
+        }
+        //静态方法： 不需要实例化对象，可以使用类名.方法()调用
+        static Coding(){
+            console.log("我是Coding静态方法");
+            //构造函数里面的代码不会被执行
+            console.log("我是Coding静态方法 " + this.age);
+            console.log(this);
+        }
+        static Say() {
+            console.log("我是Say静态方法 ");
+        }
+    }
+    var obj = new A();
+    console.log(obj);
+    console.log(obj.age);
+    obj.Say();
+    A.Coding();
+    A.Say();
+
+    //父类
+    class B
+    {
+        constructor() {
+            this.age = 100;
+        }
+        say(){
+            console.log("我是B中的实例化方法say");
+        }
+        static Coding(){//会被继承
+            console.log("我是A中Coding静态方法");
+            //构造函数里面的代码不会被执行
+            console.log("我是A中Coding静态方法 " + this.age);
+            console.log(this);
+        }
+    }
+    class C extends B
+    {
+        constructor() {
+            super();//表示调用父类的构造函数
+            this.sex = "男";
+        }
+        static Coding(){
+            console.log("我是B中Coding静态方法");
+            //构造函数里面的代码不会被执行
+            console.log("我是B中Coding静态方法 " + this.age);
+            console.log(this);
+        }
+    }
+    //实例化子类得到子对象
+    obj = new C();
+    console.log(obj.age);
+    obj.say();
+    //B.Coding();
+    C.Coding();
+</script>
+</body>
+</html>

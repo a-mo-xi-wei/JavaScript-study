@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom</title>
+</head>
+<body>
+<div id="div1" class="div100">div1</div>
+<div id="div2" class="div200">div2</div>
+<div id="div3" class="div300">div3</div>
+<div id="div4" class="div400">div4</div>
+<input type="button" value="按钮" id="btn">
+<input type="radio" id="nan" name="sex"><label for="nan">男</label>
+<input type="radio" id="nv" name="sex"><label for="nv">女</label>
+<script type="text/javascript">
+    /*通过id查找元素 返回一个具体的标签 Dom对象(document文档中的一个节点对象)*/
+    var btn = document.getElementById("btn");
+    console.log(btn);
+    var div1 = document.createElement("div1");
+    console.log(div1);
+    /*通过标签名字*/
+    var divs = document.getElementsByTagName("div");
+    console.log(divs);
+    var inputs = document.getElementsByTagName("input");
+    console.log(inputs);
+    /*通过类名*/
+    divs = document.getElementsByClassName("div100");
+    console.log(divs);
+    /*通过name属性值获取*/
+    var sexs = document.getElementsByName("sex");
+    console.log(sexs);
+</script>
+</body>
+</html>

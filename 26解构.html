@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构</title>
+</head>
+<body>
+<script type="text/javascript">
+    var arr = [1, 2, 3];
+    var [a,b,c] = arr;
+    console.log(a , b ,c);
+    var obj = {
+        "name" : "张三",
+        "age" : 36
+    }
+    //变量名必须要和对象的成员名对应
+    var {name,age } = obj;
+    console.log(name , age);
+    var str = "hello world";
+    console.log(...str);    //拆包
+    function f(...args) {   //可变参数
+        console.log(args);
+    }
+    f(1,2,3,4,5);
+    function f1([...args]=[1,1,1]) {    //接受参数时自动解构,可设置默认值
+        console.log(...args);
+    }
+    f1(arr);
+    /*对象则换成{}*/
+</script>
+</body>
+</html>

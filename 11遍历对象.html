@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遍历对象</title>
+</head>
+<body>
+<h1 style="color:#0ff">遍历对象</h1>
+<script type="text/javascript">
+    var obj ={
+        "name":"张飞",
+        "age":30,
+        "jineng":function(){
+            return "咆哮";
+        }
+    }
+    console.log(obj);
+    for(var i in obj) {
+        console.log(i,obj[i]);
+    }
+    var arr =[3,2,1];
+    for(var i in arr) {
+        console.log(i,arr[i]);
+    }
+
+</script>
+</body>
+</html>

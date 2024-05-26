@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数</title>
+</head>
+<body>
+<h1 style="color:#0ff">函数</h1>
+<script type="text/javascript">
+    function word(){
+        console.log('a');
+        console.log('b');
+        console.log('c');
+    }
+    word();
+    var fun = function(){
+        console.log('1');
+        console.log('2');
+        console.log('3');
+    }
+    fun();
+    //传参
+    function add(n){
+        var sum = 0;
+        for(var i = 1; i <= n; i++){
+            sum+=i;
+        }
+        //console.log(sum);
+        return sum;
+    }
+    console.log(add(100));
+    console.log(add(1));
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>天使飞</title>
+    <style type="text/css">
+        img{position: absolute;}
+    </style>
+</head>
+<body>
+<input type="button" value="飞吧" id="btn">
+<img src="img/三玖.ico" id="天使">
+<script type="text/javascript">
+    //点击按钮，天使跟着鼠标飞
+    var btn = document.getElementById("btn");
+    btn.onclick =  function (){
+        if(confirm("是否点击")){
+            window.onmousemove = function(e){
+                //console.log("mousemove");
+                e = e || window.event;
+                console.log("e");
+                var x = e.pageX;
+                var y = e.pageY;
+                //设置图片在页面的位置（横纵坐标）
+                document.getElementById("天使").style.left = x + "px";
+                document.getElementById("天使").style.top = y + "px";
+            }
+        }
+
+    }
+
+
+</script>
+</body>
+</html>

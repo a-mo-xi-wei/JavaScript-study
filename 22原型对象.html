@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型对象</title>
+</head>
+<body>
+<script type="text/javascript">
+    function Person(n,a){
+        this.name = a;
+        this.age = n;
+    }
+    //js给每一个构造函数，都自动分配了一个公共的对象，用来存放这个构造函数实例化后的所有实例对象
+    //公共的成员，这个公共对象就叫做原型对象，可以通过构造函数的prototype属性取到
+    Person.prototype.say = function(){
+        console.log("我叫" + this.name);
+    }
+    Person.prototype.walk = function(){
+        console.log("我走的很快");
+    }
+    var p1 = new Person(1,"张三");
+    var p2 = new Person(2,"李四");
+    //Person构造函数的每一个实例对象，都可以直接使用对应的原型对象上的方法
+    p1.say();
+    p2.say();
+    p2.walk();
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+</head>
+<body>
+<h1 style="color:#0ff">构造函数</h1>
+<script type="text/javascript">
+    function Fn(){
+        console.log(this,typeof this);
+        this.age = 19;
+        this.name = "张三";
+        this.id = "360000";
+        this.say = function(){
+            return "Hello";
+        }
+    }
+    var obj = new Fn();//实例化构造函数
+    console.log(obj,typeof obj);
+    console.log(obj.say());
+
+    function Person(a,b){
+        this.name = a;
+        this.age = b;
+        this.say = function(){
+            return "I am "+a;
+        }
+    }
+    var obj1 = new Person("张三",29);
+    var obj2 = new Person("李四",19);
+    console.log(obj1,obj2);
+    console.log(obj1.say());
+    console.log(obj2.say());
+    console.log(window);
+
+</script>
+</body>
+</html>

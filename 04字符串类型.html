@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串类型</title>
+</head>
+<body>
+<h1 style="color:#0ff">字符串类型</h1>
+<script type="text/javascript">
+    var str = "你好";
+    console.log(str);
+    console.log(str+"空你几哇");
+    console.log(str.length);
+    /*只要有一边是字符串，全都变成字符串拼接*/
+    console.log(str+200);
+    console.log('100'+200);
+    //即使是特殊值也是
+    console.log(str + undefined);
+    console.log(str + null);
+    console.log(str + true);
+
+    console.log(undefined == null);//   相等判断（代表的值是否相等）
+    console.log(undefined === null);//  全等判断（值相等，数据类型也相等）
+
+</script>
+</body>
+</html>

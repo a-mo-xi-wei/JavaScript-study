@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+<h1 style="color:#0ff">事件绑定</h1>
+<input type="button" onclick="f()" value="按钮">
+<input type="button" id="btn" value="js中绑定">
+<input type="button" id="btn2" value="事件监听">
+<script type="text/javascript">
+    //1.行内绑定事件
+    //如果同一个标签同一个事件，绑定了多次，始终执行第一次绑定的事件
+  function f() {
+    alert(123);
+    console.log("按钮按下");
+  }
+  //2.通过标签的事件属性绑定
+    //如果同一个标签同一个事件，绑定了多次，始终执行第一次绑定的事件
+  document.getElementById("btn").onclick=function(){
+    alert("js绑定事件属性");
+    console.log("绑定属性123");
+  }
+  //拆分如下
+  //function f1(){
+  //  alert("js绑定事件属性");
+  //  console.log("绑定属性123");
+  //}
+  //var btn = document.getElementById("btn");
+  //btn.onclick = f1;//后面不需要加小括号
+  //3.事件监听方式
+    //如果同一个标签同一个事件，绑定了多次，都会执行（按照绑定的先后顺序执行）
+  document.getElementById("btn2").addEventListener("click",function(){
+     alert("事件监听方式");
+     console.log("事件监听");
+  });
+  document.getElementById("btn2").addEventListener("click",function(){
+     alert("第二次绑定");
+     console.log("第二次绑定");
+  });
+  //总结： 行内绑定方式不推荐（js 和 html 混在一起，不方便后期维护）
+
+</script>
+</body>
+</html>

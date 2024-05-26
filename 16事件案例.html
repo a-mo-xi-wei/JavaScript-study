@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>案例1</title>
+    <style type="text/css">
+        .cls{
+            background-color: black;
+        }
+    </style>
+</head>
+<body class="" id="body">
+<input type="button" value="开关" id="btn">
+<ul>
+    <li>网页开关灯效果实现</li>
+    <li>点击按钮修改p标签内容</li>
+    <li>鹦鹉学舌</li>
+    <li>全选和全不选</li>
+    <li>隔行变色</li>
+</ul>
+<p id="p">隔壁的妹子</p>
+<input type="button" id="btn2" value="隔壁">
+<script type="text/javascript">
+    // 网页开关灯效果实现（设置整个页面的背景色）（样式操作/class类名操作）
+    //类名操作 给body 添加和移除类名
+    //
+    //获取按钮
+    var btn = document.getElementById('btn');
+    //给按钮绑定点击事件
+    btn.onclick = function(){
+        //事件处理函数中，控制body标签的class类名---如果有cls类名则删除，没有就加上
+        //获取body标签
+        // var body = document.getElementById('body');
+        var body = document.body;
+        // console.log(body);
+        // 方式1 类名操作
+        // console.log( body.className == '' );
+        // if(body.className == ''){
+        // 	// 如果没有类名则添加类名
+        // 	body.className = 'cls';
+        // }else{
+        // 	// 如果有cls类名则删除
+        // 	body.className = '';
+        // }
+        //方式2 样式操作
+        // console.log( body.style.backgroundColor == '');
+        if(body.style.backgroundColor == ''){
+            // 如果没有背景色则添加
+            body.style.backgroundColor = 'black';
+        }else{
+            // 如果有背景色则去掉背景色
+            body.style.backgroundColor = '';
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    //点击按钮 ，修改p标签中的内容   innerHTML属性
+    //获取按钮
+    var btn = document.getElementById('btn2');
+    //绑定点击事件
+    btn.onclick = function(){
+        //事件处理函数中，获取p标签，修改内容
+        var p = document.getElementById('p');
+        // console.log(p.innerHTML);
+        p.innerHTML = '隔壁的泰山';
+    }
+</script>
+<br>
+人说：<input type="text" id="input1"><br>
+鹦鹉说：<input type="text" id="input2">
+<script type="text/javascript">
+    //第一个input输入了内容， 第二个跟着变  内容改变的事件 oninput
+    //知识点：oninput事件  /  value属性
+    //获取第一个input
+    var input1 = document.getElementById('input1');
+    //绑定oninput事件
+    input1.oninput = function(){
+        //事件处理函数中，
+        //获取第一个input的内容（value属性值）
+        var str = input1.value;
+        // var str = this.value;
+        // console.log(str);
+        //获取第二个input
+        var input2 = document.getElementById('input2');
+        //修改第二个input的内容（value属性值）
+        input2.value = str;
+    }
+
+</script>
+<br>
+爱好：
+<input class="hobby" type="checkbox" name="">吃饭
+<input class="hobby" type="checkbox" name="">睡觉
+<input class="hobby" type="checkbox" name="">打豆豆
+<br>
+<input type="checkbox" id="check_all" >全选
+<script type="text/javascript">
+    //全选选中， 前面的爱好都选中
+    //全选没选中，全面的爱好都不选中
+    //知识点： .checked属性 表示选中状态/ 遍历数组 设置属性值
+    //获取全选标签
+    var check_all = document.getElementById('check_all');
+    //绑定 点击事件/change事件
+    check_all.onchange = function(){
+        //获取到全选的选中状态  checked属性
+        var status = check_all.checked;
+        // var status = this.checked;
+        // console.log(status); // 选中true 没选中false
+        //获取所有的爱好的checkbox标签
+        var hobbys = document.querySelectorAll('.hobby');
+        //对每一个爱好的标签，需要设置checked属性
+        //遍历数组
+        for(var i=0; i<hobbys.length; i++){
+            // console.log( hobbys[i] );
+            // 让每一个爱好的选中状态 和 全选 保持一致  checked属性值要一样
+            hobbys[i].checked = status;
+
+            // if(status == true){
+            // 	hobbys[i].checked = true;
+            // }else{
+            // 	hobbys[i].checked = false;
+            // }
+        }
+    }
+
+</script>
+<br>
+<input type="button" value="变色" id="bianse">
+<script type="text/javascript">
+    //点击按钮 页面的li, 第1，3，5 行背景色设置为红色；第0, 2，4行设置为灰色
+    //知识点：绑定事件  遍历数组  设置样式
+    //获取按钮
+    var btn = document.getElementById('bianse');
+    //给按钮绑定事件
+    btn.onclick = function(){
+        //获取所有的li
+        var lis = document.querySelectorAll('li');
+        console.log(lis);
+        //遍历数组，给每一个li设置背景色（如果是奇数行 红色； 如果是偶数行 灰色）
+        for(var i=0; i<lis.length; i++){
+            // console.log(i);
+            // 给每一个li设置背景色（如果是奇数行 红色； 如果是偶数行 灰色）
+            if(i % 2 == 0){
+                // lis[i] 是一个li标签
+                lis[i].style.backgroundColor = 'gray';
+            }else{
+                lis[i].style.backgroundColor = 'red';
+            }
+        }
+        // //使用for in 遍历，会取到 多余的一些属性，不要用来遍历html的结果
+        // for(var i in lis){
+        // 	console.log(i);
+        // 	console.log(lis[i]);
+        // }
+    }
+
+</script>
+</body>
+</html>
